@@ -17,7 +17,7 @@ license: "APACHE2"
 copyrights:
   - name: "Cloud Posse, LLC"
     url: "https://cloudposse.com"
-    year: "2016"
+    year: "2020"
 
 # Canonical GitHub repo
 github_repo: cloudposse/terraform-example-module
