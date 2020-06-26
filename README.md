@@ -42,7 +42,7 @@
 
 [![Cloud Posse][logo]](https://cpco.io/homepage)
 
-# terraform-example-module [![Latest Release](https://img.shields.io/github/release/cloudposse/build-harness.svg)](https://github.com/cloudposse/build-harness/releases/latest) [![Slack Community](https://slack.cloudposse.com/badge.svg)](https://slack.cloudposse.com) [![Discourse Forum](https://img.shields.io/discourse/https/ask.sweetops.com/posts.svg)](https://ask.sweetops.com/)
+# terraform-example-module [![Latest Release](https://img.shields.io/github/release/cloudposse/terraform-example-module.svg)](https://github.com/cloudposse/terraform-example-module/releases/latest) [![Slack Community](https://slack.cloudposse.com/badge.svg)](https://slack.cloudposse.com) [![Discourse Forum](https://img.shields.io/discourse/https/ask.sweetops.com/posts.svg)](https://ask.sweetops.com/)
 
 
 This is `terraform-example-module` project provides all the scaffolding for a typical well-built Cloud Posse module. It's a template repository you can
@@ -96,21 +96,13 @@ module "example" {
 }
 ```
 
-## Quick Start
 
-Here's how to get started...
-
-1. `git clone https://github.com/cloudposse/build-harness.git` to pull down the repository
-2. `make init` to initialize the [`build-harness`](https://github.com/cloudposse/build-harness/)
 
 
 ## Examples
 
-Here are some real world examples using this module:
-- [`github-authorized-keys`](https://github.com/cloudposse/github-authorized-keys/) - A Golang project that leverages `docker/%`, `go/%`, `travis/%` targets
-- [`charts`](https://github.com/cloudposse/charts/) - A collection of Helm Charts that leverages `docker/%` and `helm/%` targets
-- [`bastion`](https://github.com/cloudposse/bastion/) - A docker image that leverages `docker/%` and `bash/lint` targets
-- [`terraform-null-label`](https://github.com/cloudposse/terraform-null-label/) - A terraform module that leverages `terraform/%` targets
+Here is an example of using this module:
+- [`examples/complete`](https://github.com/cloudposse/terraform-example-module/) - complete example of using this module
 
 
 

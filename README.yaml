@@ -25,8 +25,8 @@ github_repo: cloudposse/terraform-example-module
 # Badges to display
 badges:
   - name: "Latest Release"
-    image: "https://img.shields.io/github/release/cloudposse/build-harness.svg"
-    url: "https://github.com/cloudposse/build-harness/releases/latest"
+    image: "https://img.shields.io/github/release/cloudposse/terraform-example-module.svg"
+    url: "https://github.com/cloudposse/terraform-example-module/releases/latest"
   - name: "Slack Community"
     image: "https://slack.cloudposse.com/badge.svg"
     url: "https://slack.cloudposse.com"
@@ -68,19 +68,13 @@ usage: |-
 
 # Example usage
 examples: |-
-  Here are some real world examples using this module:
-  - [`github-authorized-keys`](https://github.com/cloudposse/github-authorized-keys/) - A Golang project that leverages `docker/%`, `go/%`, `travis/%` targets
-  - [`charts`](https://github.com/cloudposse/charts/) - A collection of Helm Charts that leverages `docker/%` and `helm/%` targets
-  - [`bastion`](https://github.com/cloudposse/bastion/) - A docker image that leverages `docker/%` and `bash/lint` targets
-  - [`terraform-null-label`](https://github.com/cloudposse/terraform-null-label/) - A terraform module that leverages `terraform/%` targets
+  Here is an example of using this module:
+  - [`examples/complete`](https://github.com/cloudposse/terraform-example-module/) - complete example of using this module
 
 # How to get started quickly
-quickstart: |-
-  Here's how to get started...
-
-  1. `git clone https://github.com/cloudposse/build-harness.git` to pull down the repository
-  2. `make init` to initialize the [`build-harness`](https://github.com/cloudposse/build-harness/)
-
+#quickstart: |-
+#  Here's how to get started...
+ 
 # Other files to include in this README from the project folder
 include:
   - "docs/targets.md"
