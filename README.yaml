@@ -1,0 +1,92 @@
+---
+# 
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this project
+name: terraform-example-module
+
+# Logo for this project
+#logo: docs/logo.png
+
+# License of this project
+license: "APACHE2"
+
+# Copyrights
+copyrights:
+  - name: "Cloud Posse, LLC"
+    url: "https://cloudposse.com"
+    year: "2016"
+
+# Canonical GitHub repo 
+github_repo: cloudposse/terraform-example-module
+
+# Badges to display
+badges:
+  - name: "Latest Release"
+    image: "https://img.shields.io/github/release/cloudposse/build-harness.svg"
+    url: "https://github.com/cloudposse/build-harness/releases/latest"
+  - name: "Slack Community"
+    image: "https://slack.cloudposse.com/badge.svg"
+    url: "https://slack.cloudposse.com"
+  - name: "Discourse Forum"
+    image: "https://img.shields.io/discourse/https/ask.sweetops.com/posts.svg"
+    url: "https://ask.sweetops.com/"
+
+# List any related terraform modules that this module may be used with or that this module depends on.
+related:
+  - name: "terraform-null-label"
+    description: "Terraform module designed to generate consistent names and tags for resources. Use terraform-null-label to implement a strict naming convention."
+    url: "https://github.com/cloudposse/terraform-null-label"
+
+# List any resources helpful for someone to get started. For example, link to the hashicorp documentation or AWS documentation.
+references:
+  - name: "Terraform `random_integer` Resource"
+    description: "The resource random_integer generates random values from a given range, described by the min and max attributes of a given resource."
+    url: "https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer"
+
+# Short description of this project
+description: |-
+  This is `terraform-example-module` project provides all the scaffolding for a typical well-built Cloud Posse module. It's a template repository you can
+  use when creating new repositories. 
+  
+# Introduction to the project
+#introduction: |-
+#  This is an introduction.
+
+# How to use this module. Should be an easy example to copy and paste.
+usage: |-
+  Here's how to invoke this example module in your projects
+
+  ```hcl
+  module "example" {
+    source = "https://github.com/cloudposse/terraform-example-module.git?ref=master"
+    example = "Hello world!"
+  }
+  ```
+
+# Example usage
+examples: |-
+  Here are some real world examples using this module:
+  - [`github-authorized-keys`](https://github.com/cloudposse/github-authorized-keys/) - A Golang project that leverages `docker/%`, `go/%`, `travis/%` targets
+  - [`charts`](https://github.com/cloudposse/charts/) - A collection of Helm Charts that leverages `docker/%` and `helm/%` targets
+  - [`bastion`](https://github.com/cloudposse/bastion/) - A docker image that leverages `docker/%` and `bash/lint` targets
+  - [`terraform-null-label`](https://github.com/cloudposse/terraform-null-label/) - A terraform module that leverages `terraform/%` targets
+
+# How to get started quickly
+quickstart: |-
+  Here's how to get started...
+
+  1. `git clone https://github.com/cloudposse/build-harness.git` to pull down the repository
+  2. `make init` to initialize the [`build-harness`](https://github.com/cloudposse/build-harness/)
+
+# Other files to include in this README from the project folder
+include:
+  - "docs/targets.md"
+  - "docs/terraform.md"
+
+# Contributors to this project
+contributors:
+  - name: "Erik Osterman"
+    github: "osterman"

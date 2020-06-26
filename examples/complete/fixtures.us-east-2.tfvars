@@ -1,0 +1,1 @@
+example = "Hello world!"
