@@ -1,5 +1,5 @@
 ---
-# 
+#
 # This is the canonical configuration for the `README.md`
 # Run `make readme` to rebuild the `README.md`
 #
@@ -19,7 +19,7 @@ copyrights:
     url: "https://cloudposse.com"
     year: "2016"
 
-# Canonical GitHub repo 
+# Canonical GitHub repo
 github_repo: cloudposse/terraform-example-module
 
 # Badges to display
@@ -42,15 +42,24 @@ related:
 
 # List any resources helpful for someone to get started. For example, link to the hashicorp documentation or AWS documentation.
 references:
+  - name: "Terraform Standard Module Structure"
+    description: "HashiCorp's standard module structure is a file and directory layout we recommend for reusable modules distributed in separate repositories."
+    url: "https://www.terraform.io/docs/modules/index.html#standard-module-structure"
+  - name: "Terraform Module Requirements"
+    description: "HashiCorp's guidance on all the requirements for publishing a module. Meeting the requirements for publishing a module is extremely easy."
+    url: "https://www.terraform.io/docs/registry/modules/publish.html#requirements"
   - name: "Terraform `random_integer` Resource"
     description: "The resource random_integer generates random values from a given range, described by the min and max attributes of a given resource."
     url: "https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer"
+  - name: "Terraform Version Pinning"
+    description: "The required_version setting can be used to constrain which versions of the Terraform CLI can be used with your configuration"
+    url: "https://www.terraform.io/docs/configuration/terraform.html#specifying-a-required-terraform-version"
 
 # Short description of this project
 description: |-
   This is `terraform-example-module` project provides all the scaffolding for a typical well-built Cloud Posse module. It's a template repository you can
-  use when creating new repositories. 
-  
+  use when creating new repositories.
+
 # Introduction to the project
 #introduction: |-
 #  This is an introduction.
@@ -74,7 +83,7 @@ examples: |-
 # How to get started quickly
 #quickstart: |-
 #  Here's how to get started...
- 
+
 # Other files to include in this README from the project folder
 include:
   - "docs/targets.md"
