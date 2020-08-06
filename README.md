@@ -25,6 +25,7 @@
 
 -->
 
+# **This is not usable terraform module**
 This is `terraform-example-module` project provides all the scaffolding for a typical well-built Cloud Posse module. It's a template repository you can
 use when creating new repositories.
 
@@ -60,29 +61,9 @@ We literally have [*hundreds of terraform modules*][terraform_modules] that are 
 
 
 
-## Usage
-
-
-**IMPORTANT:** The `master` branch is used in `source` just as an example. In your code, do not pin to `master` because there may be breaking changes between releases.
-Instead pin to the release tag (e.g. `?ref=tags/x.y.z`) of one of our [latest releases](https://github.com/cloudposse/terraform-example-module/releases).
-
-
-Here's how to invoke this example module in your projects
-
-```hcl
-module "example" {
-  source = "https://github.com/cloudposse/terraform-example-module.git?ref=master"
-  example = "Hello world!"
-}
-```
 
 
 
-
-## Examples
-
-Here is an example of using this module:
-- [`examples/complete`](https://github.com/cloudposse/terraform-example-module/) - complete example of using this module
 
 
 
