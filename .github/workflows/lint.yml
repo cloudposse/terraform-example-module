@@ -14,18 +14,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: cloudposse/build-harness@0.39.0
+      - uses: cloudposse/build-harness@master
         with:
           entrypoint: /usr/bin/make
           args: readme/lint
-
-  super-linter:
-    name: superlinter
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-      - name: Lint Code Base
-        uses: docker://github/super-linter:v3
-        env:
-          VALIDATE_ALL_CODEBASE: false
+  # Super Linter is not ready for production
+  # The go linter has a bug, terrascan does not work right
+  #  super-linter:
+  #    name: superlinter
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #      - name: Checkout Code
+  #        uses: actions/checkout@v2
+  #      - name: Lint Code Base
+  #        uses: docker://github/super-linter:v3
+  #        env:
+  #          VALIDATE_ALL_CODEBASE: false
