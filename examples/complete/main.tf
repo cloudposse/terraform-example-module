@@ -1,4 +1,7 @@
 module "example" {
-  source  = "../.."
+  source = "../.."
+
   example = var.example
+
+  context = module.this.context
 }
