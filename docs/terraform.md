@@ -37,6 +37,7 @@
 | Name | Description |
 |------|-------------|
 | example | Example output |
+| id | ID of the created example |
 | random | Stable random number for this example |
 
 <!-- markdownlint-restore -->

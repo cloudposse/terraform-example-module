@@ -1,6 +1,6 @@
 output "id" {
   description = "ID of the created example"
-  value = module.example.id
+  value       = module.example.id
 }
 
 output "example" {
