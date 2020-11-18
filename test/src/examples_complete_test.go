@@ -15,8 +15,8 @@ func TestExamplesComplete(t *testing.T) {
 	t.Parallel()
 
 	rand.Seed(time.Now().UnixNano())
-	randId := strconv.Itoa(rand.Intn(100000))
-	attributes := []string{randId}
+	randID := strconv.Itoa(rand.Intn(100000))
+	attributes := []string{randID}
 
 	exampleInput := "Hello, world!"
 
@@ -48,7 +48,7 @@ func TestExamplesComplete(t *testing.T) {
 	// Ensure we get a random number appended
 	assert.Equal(t, exampleInput+" "+random, example)
 	// Ensure we get the attribute included in the ID
-	assert.Equal(t, "eg-ue2-test-example-"+randId, id)
+	assert.Equal(t, "eg-ue2-test-example-"+randID, id)
 
 	// ************************************************************************
 	// This steps below are unusual, not generally part of the testing
