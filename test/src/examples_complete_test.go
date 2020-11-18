@@ -4,6 +4,7 @@ import (
 	"math/rand"
 	"strconv"
 	"testing"
+	"time"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/assert"
@@ -13,6 +14,7 @@ import (
 func TestExamplesComplete(t *testing.T) {
 	t.Parallel()
 
+	rand.Seed(time.Now().UnixNano())
 	randId := strconv.Itoa(rand.Intn(100000))
 	attributes := []string{randId}
 
