@@ -4,6 +4,7 @@ import (
 	"math/rand"
 	"strconv"
 	"testing"
+	"time"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/assert"
@@ -13,8 +14,9 @@ import (
 func TestExamplesComplete(t *testing.T) {
 	t.Parallel()
 
-	randId := strconv.Itoa(rand.Intn(100000))
-	attributes := []string{randId}
+	rand.Seed(time.Now().UnixNano())
+	randID := strconv.Itoa(rand.Intn(100000))
+	attributes := []string{randID}
 
 	exampleInput := "Hello, world!"
 
@@ -46,7 +48,7 @@ func TestExamplesComplete(t *testing.T) {
 	// Ensure we get a random number appended
 	assert.Equal(t, exampleInput+" "+random, example)
 	// Ensure we get the attribute included in the ID
-	assert.Equal(t, "eg-ue2-test-example-"+randId, id)
+	assert.Equal(t, "eg-ue2-test-example-"+randID, id)
 
 	// ************************************************************************
 	// This steps below are unusual, not generally part of the testing
