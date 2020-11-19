@@ -67,7 +67,10 @@ We literally have [*hundreds of terraform modules*][terraform_modules] that are 
 Instead pin to the release tag (e.g. `?ref=tags/x.y.z`) of one of our [latest releases](https://github.com/cloudposse/terraform-example-module/releases).
 
 
-Here's how to invoke this example module in your projects
+For a complete example, see [examples/complete](examples/complete).
+
+For automated tests of the complete example using [bats](https://github.com/bats-core/bats-core) and [Terratest](https://github.com/gruntwork-io/terratest)
+(which tests and deploys the example on AWS), see [test](test).
 
 ```hcl
 module "example" {
