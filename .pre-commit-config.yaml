@@ -4,6 +4,6 @@ repos:
   hooks:
     - id: check-yaml
 - repo: git://github.com/antonbabenko/pre-commit-terraform
-  rev: v1.31.0
+  rev: v1.45.0
   hooks:
     - id: terraform_fmt
