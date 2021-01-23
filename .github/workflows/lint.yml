@@ -18,15 +18,15 @@ jobs:
         with:
           entrypoint: /usr/bin/make
           args: readme/lint
-  # Super Linter is not ready for production
-  # The go linter has a bug, terrascan does not work right
-  #  super-linter:
-  #    name: superlinter
-  #    runs-on: ubuntu-latest
-  #    steps:
-  #      - name: Checkout Code
-  #        uses: actions/checkout@v2
-  #      - name: Lint Code Base
-  #        uses: docker://github/super-linter:v3
-  #        env:
-  #          VALIDATE_ALL_CODEBASE: false
+
+  mega-linter:
+    name: mega-linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Commit"
+        uses: actions/checkout@v2
+      - name: "Lint All files, Including Helmfiles"
+        uses: cloudposse/actions/github/mega-linter@bc2baa2
+        env:
+            GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+            PLUGINS: "https://raw.githubusercontent.com/cloudposse/actions/helmfile-mega-linter/github/mega-linter/mega-linter-plugin-helmfile/helmfile.megalinter-descriptor.yml"
