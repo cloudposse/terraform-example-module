@@ -5,12 +5,13 @@
 |------|---------|
 | terraform | >= 0.13 |
 | local | >= 1.2 |
+| random | >= 2.2 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| random | n/a |
+| random | >= 2.2 |
 
 ## Inputs
 
