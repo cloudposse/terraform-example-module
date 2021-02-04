@@ -19,7 +19,8 @@
 #
 
 module "this" {
-  source = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.19.2"
+  source  = "cloudposse/label/null"
+  version = "0.23.0" // requires Terraform >= 0.13.0
 
   enabled             = var.enabled
   namespace           = var.namespace
@@ -53,6 +54,8 @@ variable "context" {
     regex_replace_chars = string
     label_order         = list(string)
     id_length_limit     = number
+    label_key_case      = string
+    label_value_case    = string
   })
   default = {
     enabled             = true
@@ -67,6 +70,8 @@ variable "context" {
     regex_replace_chars = null
     label_order         = []
     id_length_limit     = null
+    label_key_case      = null
+    label_value_case    = null
   }
   description = <<-EOT
     Single object for setting entire context at once.
@@ -75,6 +80,16 @@ variable "context" {
     Individual variable settings (non-null) override settings in context object,
     except for attributes, tags, and additional_tag_map, which are merged.
   EOT
+
+  validation {
+    condition     = var.context["label_key_case"] == null ? true : contains(["lower", "title", "upper"], var.context["label_key_case"])
+    error_message = "Allowed values: `lower`, `title`, `upper`."
+  }
+
+  validation {
+    condition     = var.context["label_value_case"] == null ? true : contains(["lower", "title", "upper", "none"], var.context["label_value_case"])
+    error_message = "Allowed values: `lower`, `title`, `upper`, `none`."
+  }
 }
 
 variable "enabled" {
@@ -164,4 +179,33 @@ variable "id_length_limit" {
   EOT
 }
 
+variable "label_key_case" {
+  type        = string
+  default     = null
+  description = <<-EOT
+    The letter case of label keys (`tag` names) (i.e. `name`, `namespace`, `environment`, `stage`, `attributes`) to use in `tags`.
+    Possible values: `lower`, `title`, `upper`. 
+    Default value: `title`.
+  EOT
+
+  validation {
+    condition     = var.label_key_case == null ? true : contains(["lower", "title", "upper"], var.label_key_case)
+    error_message = "Allowed values: `lower`, `title`, `upper`."
+  }
+}
+
+variable "label_value_case" {
+  type        = string
+  default     = null
+  description = <<-EOT
+    The letter case of output label values (also used in `tags` and `id`).
+    Possible values: `lower`, `title`, `upper` and `none` (no transformation). 
+    Default value: `lower`.
+  EOT
+
+  validation {
+    condition     = var.label_value_case == null ? true : contains(["lower", "title", "upper", "none"], var.label_value_case)
+    error_message = "Allowed values: `lower`, `title`, `upper`, `none`."
+  }
+}
 #### End of copy of cloudposse/terraform-null-label/variables.tf
