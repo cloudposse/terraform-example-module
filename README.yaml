@@ -57,6 +57,7 @@ references:
 
 # Short description of this project
 description: |-
+  # **This is not usable terraform module**
   This is `terraform-example-module` project provides all the scaffolding for a typical well-built Cloud Posse module. It's a template repository you can
   use when creating new repositories.
 
@@ -65,23 +66,23 @@ description: |-
 #  This is an introduction.
 
 # How to use this module. Should be an easy example to copy and paste.
-usage: |-
-  For a complete example, see [examples/complete](examples/complete).
-  
-  For automated tests of the complete example using [bats](https://github.com/bats-core/bats-core) and [Terratest](https://github.com/gruntwork-io/terratest)
-  (which tests and deploys the example on AWS), see [test](test).
-
-  ```hcl
-  module "example" {
-    source = "https://github.com/cloudposse/terraform-example-module.git?ref=master"
-    example = "Hello world!"
-  }
-  ```
+#usage: |-
+#  For a complete example, see [examples/complete](examples/complete).
+#  
+#  For automated tests of the complete example using [bats](https://github.com/bats-core/bats-core) and [Terratest](https://github.com/gruntwork-io/terratest)
+#  (which tests and deploys the example on AWS), see [test](test).
+#
+#  ```hcl
+#  module "example" {
+#    source = "https://github.com/cloudposse/terraform-example-module.git?ref=master"
+#    example = "Hello world!"
+#  }
+#  ```
 
 # Example usage
-examples: |-
-  Here is an example of using this module:
-  - [`examples/complete`](https://github.com/cloudposse/terraform-example-module/) - complete example of using this module
+#examples: |-
+#  Here is an example of using this module:
+#  - [`examples/complete`](https://github.com/cloudposse/terraform-example-module/examples/complete) - complete example of using this module
 
 # How to get started quickly
 #quickstart: |-
