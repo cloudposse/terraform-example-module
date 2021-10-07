@@ -101,7 +101,7 @@ For automated tests of the complete example using [bats](https://github.com/bats
 
 ```hcl
 module "example" {
-  source = "https://github.com/cloudposse/terraform-example-module.git?ref=master"
+  source  = "git::https://github.com/cloudposse/terraform-example-module.git?ref=master"
   example = "Hello world!"
 }
 ```
