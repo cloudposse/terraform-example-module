@@ -85,15 +85,15 @@ Security scanning is graciously provided by Bridgecrew. Bridgecrew is the leadin
 ## Quick Start
 
 1. Use this repo as a template for a new repo.
-1. Check out the new repo and create a `git` branch to work on.
-2. Replace the Terraform code at the root of the repo with the code you want to publish.
-3. Replace the code in `examples/complete` with Terraform code that will make a good automated test.
+2. Check out the new repo and create a `git` branch to work on.
+3. Replace the Terraform code at the root of the repo with the code you want to publish.
+4. Replace the code in `examples/complete` with Terraform code that will make a good automated test.
    Please keep `context.tf` and `fixtures.us-east-2.tfvars` in place and change only `name`, leaving
    `region`, `namespace`, `environment`, and `stage` as is. Provide outputs that will be useful for testing.
-4. Update `test/src/examples_complete_test.go` to verify the outputs of running `terraform apply` on `examples/complete`.
-5. Run `make github/init` to update the repo with the current Cloud Posse framework files (e.g. `CODEOWNERS`).
-6. Run `make pr/auto-format` to format the Terraform code and generate documentation.
-7. Commit everything to `git` and open your first PR on the new repo.
+5. Update `test/src/examples_complete_test.go` to verify the outputs of running `terraform apply` on `examples/complete`.
+6. Run `make github/init` to update the repo with the current Cloud Posse framework files (e.g. `CODEOWNERS`).
+7. Run `make pr/auto-format` to format the Terraform code and generate documentation.
+8. Commit everything to `git` and open your first PR on the new repo.
 
 
 
