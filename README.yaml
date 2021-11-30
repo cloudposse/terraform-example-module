@@ -1,11 +1,81 @@
+########################################################################################################################
+########################################################################################################################
+########################################################################################################################
+#         DELETE ME
+#
+# This is the README configuration for the Example module itself.
+# Delete this (up to and including the line with `---`) and fill in
+# the template below the dashes
+
+# Name of this project
+name: terraform-example-module
+
+# License of this project
+license: "APACHE2"
+
+# Copyrights
+copyrights:
+- name: "Cloud Posse, LLC"
+  url: "https://cloudposse.com"
+  year: "2021"
+
+# Canonical GitHub repo
+github_repo: cloudposse/terraform-example-module
+
+description: |-
+  This is an example project to provide all the scaffolding for a typical well-built Cloud Posse
+  Terraform module for AWS resources. It's a template repository you can
+  use when creating new repositories. This is not a useful module by itself.
+
+quickstart: |-
+  1. Use this repo as a template for a new repo.
+  2. Check out the new repo and create a `git` branch to work on.
+  3. Replace the Terraform code at the root of the repo with the code you want to publish.
+  4. Replace the code in `examples/complete` with Terraform code that will make a good automated test.
+     Please keep `context.tf` and `fixtures.us-east-2.tfvars` in place and change only `name`, leaving
+     `region`, `namespace`, `environment`, and `stage` as is. Provide outputs that will be useful for testing.
+  5. Update `test/src/examples_complete_test.go` to verify the outputs of running `terraform apply` on `examples/complete`.
+  6. Run `make github/init` to update the repo with the current Cloud Posse framework files (e.g. `CODEOWNERS`).
+  7. Run `make pr/auto-format` to format the Terraform code and generate documentation.
+  8. Commit everything to `git` and open your first PR on the new repo.
+
+references:
+- name: "Cloud Posse Documentation"
+  url: "https://docs.cloudposse.com"
+  description: "The Cloud Posse Developer Hub (documentation)"
+- name: "Terraform Standard Module Structure"
+  description: "HashiCorp's standard module structure is a file and directory layout we recommend for reusable modules distributed in separate repositories."
+  url: "https://www.terraform.io/docs/language/modules/develop/structure.html"
+- name: "Terraform Module Requirements"
+  description: "HashiCorp's guidance on all the requirements for publishing a module. Meeting the requirements for publishing a module is extremely easy."
+  url: "https://www.terraform.io/docs/registry/modules/publish.html#requirements"
+- name: "Terraform Version Pinning"
+  description: "The required_version setting can be used to constrain which versions of the Terraform CLI can be used with your configuration"
+  url: "https://www.terraform.io/docs/language/settings/index.html#specifying-a-required-terraform-version"
+
+related:
+- name: "Example App"
+  url: "https://github.com/cloudposse/example-app"
+  description: "Example application for CI/CD demonstrations of Codefresh"
+
+
 ---
+#         DELETE ME
+#
+# The above is the README configuration for the Example module itself.
+# Delete from here to the top of file and fill in the template below
+########################################################################################################################
+########################################################################################################################
+########################################################################################################################
+
+
 #
 # This is the canonical configuration for the `README.md`
 # Run `make readme` to rebuild the `README.md`
 #
 
 # Name of this project
-name: terraform-example-module
+name:
 
 # Logo for this project
 #logo: docs/logo.png
@@ -17,10 +87,10 @@ license: "APACHE2"
 copyrights:
   - name: "Cloud Posse, LLC"
     url: "https://cloudposse.com"
-    year: "2020"
+    year: "2021"
 
 # Canonical GitHub repo
-github_repo: cloudposse/terraform-example-module
+github_repo:
 
 # Badges to display
 badges:
@@ -42,39 +112,42 @@ related:
 
 # List any resources helpful for someone to get started. For example, link to the hashicorp documentation or AWS documentation.
 references:
-  - name: "Terraform Standard Module Structure"
-    description: "HashiCorp's standard module structure is a file and directory layout we recommend for reusable modules distributed in separate repositories."
-    url: "https://www.terraform.io/docs/modules/index.html#standard-module-structure"
-  - name: "Terraform Module Requirements"
-    description: "HashiCorp's guidance on all the requirements for publishing a module. Meeting the requirements for publishing a module is extremely easy."
-    url: "https://www.terraform.io/docs/registry/modules/publish.html#requirements"
-  - name: "Terraform `random_integer` Resource"
-    description: "The resource random_integer generates random values from a given range, described by the min and max attributes of a given resource."
-    url: "https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer"
-  - name: "Terraform Version Pinning"
-    description: "The required_version setting can be used to constrain which versions of the Terraform CLI can be used with your configuration"
-    url: "https://www.terraform.io/docs/configuration/terraform.html#specifying-a-required-terraform-version"
 
 # Short description of this project
 description: |-
-  This is `terraform-example-module` project provides all the scaffolding for a typical well-built Cloud Posse module. It's a template repository you can
-  use when creating new repositories.
+  Short
+  description
 
 # Introduction to the project
-#introduction: |-
-#  This is an introduction.
+introduction: |-
+  This is an introduction.
 
 # How to use this module. Should be an easy example to copy and paste.
 usage: |-
   For a complete example, see [examples/complete](examples/complete).
-  
+
   For automated tests of the complete example using [bats](https://github.com/bats-core/bats-core) and [Terratest](https://github.com/gruntwork-io/terratest)
   (which tests and deploys the example on AWS), see [test](test).
 
   ```hcl
+  # Create a standard label resource. See [null-label](https://github.com/cloudposse/terraform-null-label/#terraform-null-label--)
+  module "label" {
+    source  = "cloudposse/label/null"
+    # Cloud Posse recommends pinning every module to a specific version, though usually you want to use the current one
+    # version = "x.x.x"
+
+    namespace = "eg"
+    name      = "example"
+  }
+
   module "example" {
-    source = "https://github.com/cloudposse/terraform-example-module.git?ref=master"
+    source  = "cloudposse/*****/aws"
+    # Cloud Posse recommends pinning every module to a specific version
+    # version = "x.x.x"
+
     example = "Hello world!"
+
+    context = module.label.this
   }
   ```
 
@@ -84,8 +157,8 @@ examples: |-
   - [`examples/complete`](https://github.com/cloudposse/terraform-example-module/) - complete example of using this module
 
 # How to get started quickly
-#quickstart: |-
-#  Here's how to get started...
+quickstart: |-
+  Here's how to get started...
 
 # Other files to include in this README from the project folder
 include:
