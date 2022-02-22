@@ -1,5 +1,6 @@
 #  Local .terraform directories
-**/.terraform/*
+**/.terraform
+**/.terraform.d
 
 # .tfstate files
 *.tfstate
@@ -18,3 +19,9 @@
 # Crash log files
 crash.log
 test.log
+
+# Editor backups
+*.orig
+*.draft
+*~
+
