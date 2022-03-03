@@ -1,7 +1,7 @@
 module "example" {
   source = "../.."
 
-  example = var.example
+  example = coalesce(var.example_input_override, var.example_input)
 
   context = module.this.context
 }
