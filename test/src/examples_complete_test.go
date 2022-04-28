@@ -92,8 +92,8 @@ func TestExamplesComplete(t *testing.T) {
 
 func TestExamplesCompleteDisabled(t *testing.T) {
   t.Parallel()
-  randId := strings.ToLower(random.UniqueId())
-  attributes := []string{randId}
+  randID := strings.ToLower(random.UniqueId())
+  attributes := []string{randID}
 
   rootFolder := "../../"
   terraformFolderRelativeToRoot := "examples/complete"
@@ -117,11 +117,8 @@ func TestExamplesCompleteDisabled(t *testing.T) {
   defer cleanup(t, terraformOptions, tempTestFolder)
 
   // This will run `terraform init` and `terraform apply` and fail the test if there are any errors
-  terraform.InitAndApply(t, terraformOptions)
+  results := terraform.InitAndApply(t, terraformOptions)
 
-  // Get all the output and lookup a field. Pass if the field is missing or empty.
-  example := terraform.OutputAll(t, terraformOptions)["example"]
-
-  // Verify we're getting back the outputs we expect
-  assert.Empty(t, example, "When disabled, module should have no outputs.")
+  // Should complete successfully without creating or changing any resources
+  assert.Contains(t, results, "Resources: 0 added, 0 changed, 0 destroyed.")
 }
