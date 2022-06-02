@@ -4,6 +4,8 @@
     ":preserveSemverRanges"
   ],
   "labels": ["auto-update"],
+  // config:base enables the dependency dashboard and this will close the open ticket if there aren't any open dependency PRs open
+  "dependencyDashboardAutoclose": true,
   "enabledManagers": ["terraform"],
   "terraform": {
     "ignorePaths": ["**/context.tf", "examples/**"]
