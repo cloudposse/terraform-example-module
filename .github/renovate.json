@@ -4,7 +4,6 @@
     ":preserveSemverRanges"
   ],
   "labels": ["auto-update"],
-  "dependencyDashboardAutoclose": true,
   "enabledManagers": ["terraform"],
   "terraform": {
     "ignorePaths": ["**/context.tf", "examples/**"]
