@@ -7,7 +7,7 @@ import (
 
   "github.com/gruntwork-io/terratest/modules/random"
   "github.com/gruntwork-io/terratest/modules/terraform"
-  test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
+  testStructure "github.com/gruntwork-io/terratest/modules/test-structure"
   "github.com/stretchr/testify/assert"
 )
 
@@ -26,7 +26,7 @@ func TestExamplesComplete(t *testing.T) {
   terraformFolderRelativeToRoot := "examples/complete"
   varFiles := []string{"fixtures.us-east-2.tfvars"}
 
-  tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, rootFolder, terraformFolderRelativeToRoot)
+  tempTestFolder := testStructure.CopyTerraformFolderToTemp(t, rootFolder, terraformFolderRelativeToRoot)
 
   terraformOptions := &terraform.Options{
     // The path to where our Terraform code is located
@@ -99,7 +99,7 @@ func TestExamplesCompleteDisabled(t *testing.T) {
   terraformFolderRelativeToRoot := "examples/complete"
   varFiles := []string{"fixtures.us-east-2.tfvars"}
 
-  tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, rootFolder, terraformFolderRelativeToRoot)
+  tempTestFolder := testStructure.CopyTerraformFolderToTemp(t, rootFolder, terraformFolderRelativeToRoot)
 
   terraformOptions := &terraform.Options{
     // The path to where our Terraform code is located
