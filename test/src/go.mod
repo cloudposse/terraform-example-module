@@ -1,6 +1,6 @@
 module github.com/cloudposse/terraform-example-module
 
-go 1.18
+go 1.19
 
 require (
 	// Known security flaws in terratest dependencies prior to v0.40.15
