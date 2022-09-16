@@ -51,13 +51,21 @@ jobs:
   #         filter_mode: nofilter
   #         fail_on_error: true
 
+  # This job finds all directories that have terraform code in them and creates an JSON array of the paths so they can
+  # be used as a matrix array in the next job.
   tfdirs-build-matrix:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - id: set-matrix
         run: |
-          echo ::set-output name=matrix::$(find ./ -name '*.tf' -not -path '*/.terraform/*' -exec dirname {} \; | sort | uniq | jq --raw-input --slurp 'split("\n")| map(select(. != ""))')
+          matrix=$(find ./ -name '*.tf' \
+            -not -path '*/.terraform/*' \
+            -exec dirname {} \; \
+            | sort \
+            | uniq \
+            | jq --raw-input --slurp 'split("\n")| map(select(. != ""))')
+          echo ::set-output name=matrix::$(echo $matrix)
     outputs:
       tfdirs_matrix: ${{ steps.set-matrix.outputs.matrix }}
 
