@@ -57,7 +57,7 @@ jobs:
       - id: set-matrix
         run:
           echo "::set-output name=tfdirs_matrix::$(find ./ -name '*.tf' -not -path '*/.terraform/*' -exec dirname
-          $(realpath {}) \; | sort | uniq | tr '\n')"
+          $(realpath {}) \; | sort | uniq | jq --raw-input --slurp 'split("\n")| map(select(. != ""))')"
     outputs:
       version_matrix: ${{ steps.set-matrix.outputs.tfdirs_matrix }}
 
@@ -66,7 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        tfdir: ${{ needs.tfdirs-build-matrix.outputs.tfdirs_matrix }}
+        tfdir: ${{ fromJson(needs.tfdirs-build-matrix.outputs.tfdirs_matrix) }}
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
