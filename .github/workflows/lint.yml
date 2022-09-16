@@ -50,3 +50,17 @@ jobs:
           reporter: ${{ env.REPORTER }}
           filter_mode: nofilter
           fail_on_error: true
+
+  tflint:
+    name: reviewdog/tflint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: tflint
+        uses: reviewdog/action-tflint@v1.17.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: ${{ env.REPORTER }}
+          filter_mode: nofilter
+          fail_on_error: true
+          tflint_rulesets: aws
