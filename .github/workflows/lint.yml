@@ -55,12 +55,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run:
-          find ./ -name '*.tf' -not -path '*/.terraform/*' -exec dirname $(realpath {}) \; | sort | uniq | jq
-          --raw-input --slurp 'split("\n")| map(select(. != ""))'
       - id: set-matrix
         run: |
-          echo ::set-output name=matrix::$(find ./ -name '*.tf' -not -path '*/.terraform/*' -exec dirname $(realpath {}) \; | sort | uniq | jq --raw-input --slurp 'split("\n")| map(select(. != ""))')
+          echo ::set-output name=matrix::$(find ./ -name '*.tf' -not -path '*/.terraform/*' -exec dirname {} \; | sort | uniq | jq --raw-input --slurp 'split("\n")| map(select(. != ""))')
     outputs:
       tfdirs_matrix: ${{ steps.set-matrix.outputs.matrix }}
 
