@@ -87,4 +87,4 @@ jobs:
           fail_on_error: true
           tflint_rulesets: aws
           tflint_init: true
-          working-directory: ${{ matrix.tfdir }}
+          working_directory: ${{ matrix.tfdir }}
