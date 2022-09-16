@@ -54,6 +54,7 @@ jobs:
   tfdirs-build-matrix:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run:
           find ./ -name '*.tf' -not -path '*/.terraform/*' -exec dirname $(realpath {}) \; | sort | uniq | jq
           --raw-input --slurp 'split("\n")| map(select(. != ""))'
