@@ -122,3 +122,8 @@ func TestExamplesCompleteDisabled(t *testing.T) {
 	// Should complete successfully without creating or changing any resources
 	assert.Contains(t, results, "Resources: 0 added, 0 changed, 0 destroyed.")
 }
+
+func TestAlwaysFailing(t *testing.T) {
+	t.Parallel()
+	assert.True(t, false)
+}
