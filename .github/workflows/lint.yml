@@ -11,53 +11,68 @@ env:
   REPORTER: local
 
 jobs:
-  golang:
-    name: reviewdog/golangci-lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: reviewdog/action-golangci-lint@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          golangci_lint_flags: --timeout 5m
-          reporter: ${{ env.REPORTER }}
-          workdir: ${{ env.TESTS_DIR }}
-          fail_on_error: true
-          filter_mode: nofilter
+  # golang:
+  #   name: reviewdog/golangci-lint
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: reviewdog/action-golangci-lint@v2
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         golangci_lint_flags: --timeout 5m
+  #         reporter: ${{ env.REPORTER }}
+  #         workdir: ${{ env.TESTS_DIR }}
+  #         fail_on_error: true
+  #         filter_mode: nofilter
 
-  misspell:
-    name: reviewdog/misspell
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: reviewdog/action-misspell@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          locale: "US"
-          reporter: ${{ env.REPORTER }}
-          filter_mode: nofilter
-          fail_on_error: true
+  # misspell:
+  #   name: reviewdog/misspell
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: reviewdog/action-misspell@v1
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         locale: "US"
+  #         reporter: ${{ env.REPORTER }}
+  #         filter_mode: nofilter
+  #         fail_on_error: true
 
-  markdownlint:
-    name: reviewdog/markdownlint
+  # markdownlint:
+  #   name: reviewdog/markdownlint
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: markdownlint
+  #       uses: reviewdog/action-markdownlint@v0
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         reporter: ${{ env.REPORTER }}
+  #         filter_mode: nofilter
+  #         fail_on_error: true
+
+  tfdirs-build-matrix:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: markdownlint
-        uses: reviewdog/action-markdownlint@v0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: ${{ env.REPORTER }}
-          filter_mode: nofilter
-          fail_on_error: true
+      - id: set-matrix
+        run:
+          echo "::set-output name=tfdirs_matrix::$(find ./ -name '*.tf' -not -path '*/.terraform/*' -exec dirname
+          $(realpath {}) \; | sort | uniq)"
+    outputs:
+      version_matrix: ${{ steps.set-matrix.outputs.tfdirs_matrix }}
 
   tflint:
     name: reviewdog/tflint
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tfdir: ${{ fromJson(needs.tfdirs-build-matrix.outputs.tfdirs_matrix) }}
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
+
       - run: terraform init
+        working-directory: ${{ matrix.tfdir }}
 
       - name: tflint
         uses: reviewdog/action-tflint@v1.17.0
@@ -68,3 +83,4 @@ jobs:
           fail_on_error: true
           tflint_rulesets: aws
           tflint_init: true
+          working-directory: ${{ matrix.tfdir }}
