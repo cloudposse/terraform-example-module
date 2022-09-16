@@ -56,6 +56,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+      - run: terraform init
+
       - name: tflint
         uses: reviewdog/action-tflint@v1.17.0
         with:
