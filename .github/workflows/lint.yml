@@ -57,7 +57,7 @@ jobs:
       - id: set-matrix
         run:
           echo "::set-output name=tfdirs_matrix::$(find ./ -name '*.tf' -not -path '*/.terraform/*' -exec dirname
-          $(realpath {}) \; | sort | uniq)"
+          $(realpath {}) \; | sort | uniq | tr '\n')"
     outputs:
       version_matrix: ${{ steps.set-matrix.outputs.tfdirs_matrix }}
 
