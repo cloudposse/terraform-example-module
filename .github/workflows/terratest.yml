@@ -1,0 +1,36 @@
+name: Run terratest tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  terratest:
+    runs-on: ubuntu-latest
+    env:
+      GO_VERSION: 1.20
+      TESTS_DIR: examples/src
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@v3
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache: true
+
+      - name: Run Test
+        working-directory: ${{ env.TESTS_DIR }}
+        run: |
+          go install github.com/jstemmer/go-junit-report@latest
+          go test -v ./... | go-junit-report -set-exit-code > report.xml
+
+      - name: Post Test Summary
+        uses: test-summary/action@v1
+        with:
+          paths: |
+            ${{ env.TESTS_DIR }}/report.xml
+        if: always()
