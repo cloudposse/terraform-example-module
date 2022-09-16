@@ -20,7 +20,9 @@ jobs:
 
       - uses: actions/setup-go@v3
         with:
-          go-version-file: "${{ env.TESTS_DIR}}/go.mod"
+          go-version-file: ${{ env.TESTS_DIR}}/go.mod
+          cache: true
+          cache-dependency-path: ${{ env.TESTS_DIR}}/go.mod
 
       - name: Run Test
         working-directory: ${{ env.TESTS_DIR }}
