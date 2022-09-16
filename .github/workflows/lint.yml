@@ -55,15 +55,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: set-matrix
-        run:
-          echo "::set-output name=tfdirs_matrix::$(find ./ -name '*.tf' -not -path '*/.terraform/*' -exec dirname
-          $(realpath {}) \; | sort | uniq | jq --raw-input --slurp 'split("\n")| map(select(. != ""))')"
+        run: |
+          echo "::set-output name=matrix::$(find ./ -name '*.tf' \
+           -not -path '*/.terraform/*' \
+           -exec dirname $(realpath {}) \; \
+           | sort \
+           | uniq \
+           | jq --raw-input --slurp 'split("\n")| map(select(. != ""))')
     outputs:
-      version_matrix: ${{ steps.set-matrix.outputs.tfdirs_matrix }}
+      tfdirs_matrix: ${{ steps.set-matrix.outputs.matrix }}
 
   tflint:
     name: reviewdog/tflint
     runs-on: ubuntu-latest
+    needs: tfdirs-build-matrix
     strategy:
       matrix:
         tfdir: ${{ fromJson(needs.tfdirs-build-matrix.outputs.tfdirs_matrix) }}
