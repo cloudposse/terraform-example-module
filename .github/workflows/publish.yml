@@ -23,4 +23,4 @@ jobs:
           curl -L -o ${{ github.sha }}.zip https://github.com/${GITHUB_REPOSITORY#*/}/archive/${{ github.sha }}.zip
       - name: upload to artifactory
         run: |
-          curl -u${{ secrets.JFROG_USER}}:${{ secrets.JFROG_TOKEN}} -XPUT "${{ env.ARTIFACTORY_REPO}}/${{ env.MODULE_NAMESPACCE}}/${{ env.MODULE_NAME}}/${{ env.PROVIDER_NAME}}/${{ env.VERSION}}.zip" -T ${{ env.VERSION}}.zip
+          curl -u${{ secrets.JFROG_USER_NAME}}:${{ secrets.JFROG_TOKEN}} -XPUT "${{ env.ARTIFACTORY_REPO}}/${{ env.MODULE_NAMESPACCE}}/${{ env.MODULE_NAME}}/${{ env.PROVIDER_NAME}}/${{ env.VERSION}}.zip" -T ${{ env.VERSION}}.zip
