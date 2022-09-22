@@ -1,0 +1,93 @@
+name: Run Linting Checks
+
+on:
+  workflow_dispatch:
+
+env:
+  GO_VERSION: 1.19
+  TESTS_DIR: test/src
+  REPORTER: github-pr-check
+
+jobs:
+  golang:
+    name: reviewdog/golangci-lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: reviewdog/action-golangci-lint@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          golangci_lint_flags: --timeout 5m
+          reporter: ${{ env.REPORTER }}
+          workdir: ${{ env.TESTS_DIR }}
+          fail_on_error: true
+          filter_mode: nofilter
+
+  misspell:
+    name: reviewdog/misspell
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: reviewdog/action-misspell@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          locale: "US"
+          reporter: ${{ env.REPORTER }}
+          filter_mode: nofilter
+          fail_on_error: true
+
+  markdownlint:
+    name: reviewdog/markdownlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: markdownlint
+        uses: reviewdog/action-markdownlint@v0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: ${{ env.REPORTER }}
+          filter_mode: nofilter
+          fail_on_error: true
+
+  # This job finds all directories that have terraform code in them and creates an JSON array of the paths so they can
+  # be used as a matrix array in the next job.
+  tfdirs-build-matrix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - id: set-matrix
+        run: |
+          matrix=$(find ./ -name '*.tf' \
+            -not -path '*/.terraform/*' \
+            -exec dirname {} \; \
+            | sort \
+            | uniq \
+            | jq --raw-input --slurp 'split("\n")| map(select(. != ""))')
+          echo ::set-output name=matrix::$(echo $matrix)
+    outputs:
+      tfdirs_matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+  tflint:
+    name: reviewdog/tflint
+    runs-on: ubuntu-latest
+    needs: tfdirs-build-matrix
+    strategy:
+      matrix:
+        tfdir: ${{ fromJson(needs.tfdirs-build-matrix.outputs.tfdirs_matrix) }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+
+      - run: terraform init
+        working-directory: ${{ matrix.tfdir }}
+
+      - name: tflint
+        uses: reviewdog/action-tflint@v1.17.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: ${{ env.REPORTER }}
+          filter_mode: nofilter
+          fail_on_error: true
+          tflint_rulesets: aws
+          tflint_init: true
+          working_directory: ${{ matrix.tfdir }}
