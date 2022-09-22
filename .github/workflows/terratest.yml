@@ -1,9 +1,6 @@
 name: Run terratest tests
 
 on:
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
