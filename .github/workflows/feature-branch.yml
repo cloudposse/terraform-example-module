@@ -1,0 +1,43 @@
+name: Feature Branch
+on:
+  pull_request:
+    branches: [ 'main' ]
+    types: [opened, synchronize, reopened, closed, labeled, unlabeled]
+
+permissions:
+  pull-requests: write
+  deployments: write
+  id-token: write
+  contents: read
+
+jobs:
+  suggest-terraform-format:
+    runs-on: ubuntu-latest
+    container: cloudposse/build-harness:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Terraform Format
+        shell: bash
+        run: make BUILD_HARNESS_PATH=/build-harness PACKAGES_PREFER_HOST=true -f /build-harness/templates/Makefile.build-harness terraform/fmt
+
+      - name: Reviewdog Suggester
+        uses: reviewdog/action-suggester@v1
+        with:
+          cleanup: true
+
+#  default:
+#    uses: cloudposse/github-actions-workflows-terraform-module/.github/workflows/feature-branch.yml@main
+#    with:
+#      organization: "${{ github.event.repository.owner.login }}"
+#      repository: "${{ github.event.repository.name }}"
+#      open: ${{ github.event.pull_request.state == 'open' }}
+#      labels: ${{ toJSON(github.event.pull_request.labels.*.name) }}
+#      ref: ${{ github.event.pull_request.head.ref  }}
+#    secrets:
+#      github-private-actions-pat: "${{ secrets.PUBLIC_AND_PRIVATE_REPO_ACCESS_TOKEN }}"
+#      registry: "${{ secrets.ECR_REGISTRY }}"
+#      secret-outputs-passphrase: "${{ secrets.GHA_SECRET_OUTPUT_PASSPHRASE }}"
+#      ecr-region: "${{ secrets.ECR_REGION }}"
+#      ecr-iam-role: "${{ secrets.ECR_IAM_ROLE }}"
