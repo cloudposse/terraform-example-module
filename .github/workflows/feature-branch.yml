@@ -18,25 +18,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-#      - name: Terraform Format
-#        shell: bash
-#        run: make -C vendor/tflint
-
-      - uses: terraform-linters/setup-tflint@v2
-        name: Setup TFLint
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v2
         with:
           tflint_version: v0.38.1
 
-      - name: Run tflint
+      - name: Terraform init
         shell: bash
-        run: tflint ./examples --format=checkstyle
+        run: terraform init -get -backend=false -input=false >/dev/null     
 
-      - name: Reviewdog Suggester
-        uses: reviewdog/action-suggester@v1
+      - name: tflint
+        uses: cloudposse/action-tflint@master
         with:
           fail_on_error: true
-          cleanup: true
-          reviewdog_flags: '-f=checkstyle -name="tflint"'
+
+#      - name: suggester
+#
 
 #  default:
 #    uses: cloudposse/github-actions-workflows-terraform-module/.github/workflows/feature-branch.yml@main
