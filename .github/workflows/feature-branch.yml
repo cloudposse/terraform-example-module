@@ -11,29 +11,57 @@ permissions:
   contents: read
 
 jobs:
-  suggest-terraform-lint:
+  find-terraform-directories:
     runs-on: ubuntu-latest
-    container: cloudposse/build-harness:latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Setup tflint
-        uses: terraform-linters/setup-tflint@v2
+      - id: set-matrix
+        run: |
+          matrix=$(find ./ -name '*.tf' \
+            -not -path '*/.terraform/*' \
+            -exec dirname {} \; \
+            | sort \
+            | uniq \
+            | jq --raw-input --slurp 'split("\n")| map(select(. != ""))')
+          echo "::set-output name=matrix::$(echo $matrix)" | tee -a $GITHUB_OUTPUT
+    outputs:
+      tfdirs_matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+  tflint:
+    runs-on: ubuntu-latest
+    needs: find-terraform-directories
+    strategy:
+      matrix:
+        tfdir: ${{ fromJson(needs.find-terraform-directories.outputs.tfdirs_matrix) }}
+    env:
+      TFLINT_PLUGIN_DIR: ${{ github.workspace }}/.tflint.d/plugins
+      TFLINT_PLUGINS: aws
+      TFLINT_CACHE_VER: 1 # Increment this to force a cache refresh
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: hashicorp/setup-terraform@v2
+
+      - run: terraform init
+        working-directory: ${{ matrix.tfdir }}
+
+      - name: cache tflint plugins
+        id: cache-plugins
+        uses: actions/cache@v3
         with:
-          tflint_version: v0.38.1
+          path: ${{ env.TFLINT_PLUGIN_DIR }}
+          key: tflint-plugins-${{ env.TFLINT_CACHE_VER }}
 
-      - name: Terraform init
-        shell: bash
-        run: terraform init -get -backend=false -input=false >/dev/null
-
-      - name: Run tflint / suggester
-        uses: cloudposse/action-tflint@master
+      - name: tflint
+        uses: reviewdog/action-tflint@v1.17.0
         with:
-          filter_mode: "nofilter"
-          fail_on_error: true
           reporter: "github-pr-review"
-          flags: "--module --recursive"
+          filter_mode: nofilter
+          fail_on_error: true
+          tflint_rulesets: ${{ env.TFLINT_PLUGINS }}
+          tflint_init: true
+          working_directory: ${{ matrix.tfdir }}
 
 #  default:
 #    uses: cloudposse/github-actions-workflows-terraform-module/.github/workflows/feature-branch.yml@main
