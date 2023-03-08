@@ -24,7 +24,7 @@ jobs:
             | sort \
             | uniq \
             | jq --raw-input --slurp 'split("\n")| map(select(. != ""))')
-          echo "matrix='$(echo $matrix)'" >> $GITHUB_OUTPUT
+          echo "matrix=$(echo $matrix)" >> $GITHUB_OUTPUT
     outputs:
       tfdirs_matrix: ${{ steps.set-matrix.outputs.matrix }}
 
