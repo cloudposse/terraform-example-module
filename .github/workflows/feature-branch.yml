@@ -18,22 +18,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup TFLint
+      - name: Setup tflint
         uses: terraform-linters/setup-tflint@v2
         with:
           tflint_version: v0.38.1
 
       - name: Terraform init
         shell: bash
-        run: terraform init -get -backend=false -input=false >/dev/null     
+        run: terraform init -get -backend=false -input=false >/dev/null
 
-      - name: tflint
+      - name: Run tflint / suggester
         uses: cloudposse/action-tflint@master
         with:
+          filter_mode: "nofilter"
           fail_on_error: true
-
-#      - name: suggester
-#
+          reporter: "github-pr-review"
+          flags: "--module --recursive"
 
 #  default:
 #    uses: cloudposse/github-actions-workflows-terraform-module/.github/workflows/feature-branch.yml@main
