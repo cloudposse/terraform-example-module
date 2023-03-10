@@ -25,6 +25,6 @@ jobs:
         with:
           cleanup: false
 
-      - name: Status cleanup
+      - name: Status check
         shell: bash
         run: git diff --exit-code
