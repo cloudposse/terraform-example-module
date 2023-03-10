@@ -20,7 +20,9 @@ jobs:
       - name: Terraform format
         uses: dflook/terraform-fmt@v1
 
+      - name: Verify no git diff
+        shell: bash
+        run: git diff --exit-code
+
       - name: Reviewdog suggester
         uses: reviewdog/action-suggester@v1
-        with:
-          fail_on_error: true
