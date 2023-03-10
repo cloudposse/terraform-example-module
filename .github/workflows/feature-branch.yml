@@ -58,7 +58,6 @@ jobs:
         uses: reviewdog/action-tflint@v1.17.0
         with:
           reporter: github-pr-review
-#          filter_mode: nofilter
           fail_on_error: true
           tflint_rulesets: ${{ env.TFLINT_PLUGINS }}
           tflint_init: true
