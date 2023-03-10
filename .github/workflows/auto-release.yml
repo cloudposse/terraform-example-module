@@ -1,11 +1,11 @@
 name: auto-release
 
 on:
-  push:
-    branches:
-      - main
-      - master
-      - production
+#  push:
+#    branches:
+#      - main
+#      - master
+#      - production
 
 jobs:
   publish:
