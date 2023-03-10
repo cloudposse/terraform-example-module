@@ -1,10 +1,11 @@
-resource "random_integer" "example" {
+resource   "random_integer" "example" {
   count = module.this.enabled ? 1 : 0
 
   min = 1
   max = 50000
   keepers = {
-    example = var.example
+
+      example = var.example
   }
 }
 
