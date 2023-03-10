@@ -4,9 +4,9 @@ on:
     branches: [ main ]
 
 permissions:
-  contents: write
+  contents: read
   id-token: write
 
 jobs:
-  default:
+  validate:
     uses: cloudposse/github-actions-workflows-terraform-module/.github/workflows/main-branch.yml@main
