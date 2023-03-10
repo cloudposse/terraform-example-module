@@ -22,7 +22,9 @@ jobs:
 
       - name: Reviewdog suggester
         uses: reviewdog/action-suggester@v1
+        with:
+          cleanup: false
 
-      - name: Status check
+      - name: Status cleanup
         shell: bash
         run: git diff --exit-code
