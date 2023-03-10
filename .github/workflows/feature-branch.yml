@@ -23,7 +23,7 @@ jobs:
       - name: Reviewdog suggester
         uses: reviewdog/action-suggester@v1
         with:
-          tool_name: terraform fmt
+          tool_name: "terraform fmt -recursive"
           cleanup: false
 
       - name: Status check
