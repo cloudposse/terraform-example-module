@@ -8,5 +8,5 @@ permissions:
   id-token: write
 
 jobs:
-  validate:
+  default:
     uses: cloudposse/github-actions-workflows-terraform-module/.github/workflows/main-branch.yml@main
