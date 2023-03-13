@@ -2,7 +2,7 @@ name: Feature Branch
 on:
   pull_request:
     branches: [ main ]
-    types: [opened, synchronize, reopened, closed, labeled, unlabeled]
+    types: [opened, synchronize, reopened]
 
 permissions:
   pull-requests: write
