@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened, closed, labeled, unlabeled]
 
 permissions:
-  pull-requests: read
+  pull-requests: write
   id-token: write
   contents: read
 
