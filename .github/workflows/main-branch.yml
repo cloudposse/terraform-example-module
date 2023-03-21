@@ -10,3 +10,5 @@ permissions:
 jobs:
   terraform-module:
     uses: cloudposse/github-actions-workflows-terraform-module/.github/workflows/main-branch.yml@main
+    secrets:
+      github_access_token: ${{ secrets.REPO_ACCESS_TOKEN }}

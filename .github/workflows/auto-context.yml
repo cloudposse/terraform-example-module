@@ -1,8 +1,8 @@
 name: "auto-context"
 on:
-  schedule:
-  # Update context.tf nightly
-  - cron:  '0 3 * * *'
+#  schedule:
+#  # Update context.tf nightly
+#  - cron:  '0 3 * * *'
 
 jobs:
   update:
