@@ -55,6 +55,8 @@ references:
 
 
 # List any related terraform modules that this module may be used with or that this module depends on.
+
+# List any related terraform modules that this module may be used with or that this module depends on.
 related:
   - name: "Example App"
     url: "https://github.com/cloudposse/example-app"
@@ -62,6 +64,9 @@ related:
 
 
 badges:
+  - name: Last Updated
+    image: https://img.shields.io/github/last-commit/cloudposse/terraform-example-module.svg?style=for-the-badge
+    url: https://github.com/cloudposse/terraform-example-module/commits
   - name: Latest Release
     image: https://img.shields.io/github/release/cloudposse/terraform-example-module.svg?style=for-the-badge
     url: https://github.com/cloudposse/terraform-example-module/releases/latest
@@ -107,6 +112,9 @@ github_repo:
 
 # Badges to display
 badges:
+  - name: Last Updated
+    image: https://img.shields.io/github/last-commit/None.svg?style=for-the-badge
+    url: https://github.com/None/commits
   - name: Latest Release
     image: https://img.shields.io/github/release/None.svg?style=for-the-badge
     url: https://github.com/None/releases/latest
