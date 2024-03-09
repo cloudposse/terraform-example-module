@@ -15,9 +15,9 @@ license: "APACHE2"
 
 # Copyrights
 copyrights:
-- name: "Cloud Posse, LLC"
-  url: "https://cloudposse.com"
-  year: "2021"
+  - name: "Cloud Posse, LLC"
+    url: "https://cloudposse.com"
+    year: "2021"
 
 # Canonical GitHub repo
 github_repo: cloudposse/terraform-example-module
@@ -40,25 +40,38 @@ quickstart: |-
   8. Commit everything to `git` and open your first PR on the new repo.
 
 references:
-- name: "Cloud Posse Documentation"
-  url: "https://docs.cloudposse.com"
-  description: "The Cloud Posse Developer Hub (documentation)"
-- name: "Terraform Standard Module Structure"
-  description: "HashiCorp's standard module structure is a file and directory layout we recommend for reusable modules distributed in separate repositories."
-  url: "https://www.terraform.io/docs/language/modules/develop/structure.html"
-- name: "Terraform Module Requirements"
-  description: "HashiCorp's guidance on all the requirements for publishing a module. Meeting the requirements for publishing a module is extremely easy."
-  url: "https://www.terraform.io/docs/registry/modules/publish.html#requirements"
-- name: "Terraform Version Pinning"
-  description: "The required_version setting can be used to constrain which versions of the Terraform CLI can be used with your configuration"
-  url: "https://www.terraform.io/docs/language/settings/index.html#specifying-a-required-terraform-version"
+  - name: "Cloud Posse Documentation"
+    url: "https://docs.cloudposse.com"
+    description: "The Cloud Posse Developer Hub (documentation)"
+  - name: "Terraform Standard Module Structure"
+    description: "HashiCorp's standard module structure is a file and directory layout we recommend for reusable modules distributed in separate repositories."
+    url: "https://www.terraform.io/docs/language/modules/develop/structure.html"
+  - name: "Terraform Module Requirements"
+    description: "HashiCorp's guidance on all the requirements for publishing a module. Meeting the requirements for publishing a module is extremely easy."
+    url: "https://www.terraform.io/docs/registry/modules/publish.html#requirements"
+  - name: "Terraform Version Pinning"
+    description: "The required_version setting can be used to constrain which versions of the Terraform CLI can be used with your configuration"
+    url: "https://www.terraform.io/docs/language/settings/index.html#specifying-a-required-terraform-version"
 
+
+# List any related terraform modules that this module may be used with or that this module depends on.
 related:
-- name: "Example App"
-  url: "https://github.com/cloudposse/example-app"
-  description: "Example application for CI/CD demonstrations of Codefresh"
+  - name: "Example App"
+    url: "https://github.com/cloudposse/example-app"
+    description: "Example application for CI/CD demonstrations of Codefresh"
 
 
+badges:
+  - name: Latest Release
+    image: https://img.shields.io/github/release/cloudposse/terraform-example-module.svg?style=for-the-badge
+    url: https://github.com/cloudposse/terraform-example-module/releases/latest
+  - name: Last Updated
+    image: https://img.shields.io/github/last-commit/cloudposse/terraform-example-module.svg?style=for-the-badge
+    url: https://github.com/cloudposse/terraform-example-module/commits
+  - name: Slack Community
+    image: https://slack.cloudposse.com/for-the-badge.svg
+    url: https://slack.cloudposse.com
+contributors: []
 ---
 #         DELETE ME
 #
@@ -94,15 +107,15 @@ github_repo:
 
 # Badges to display
 badges:
-  - name: "Latest Release"
-    image: "https://img.shields.io/github/release/cloudposse/terraform-example-module.svg"
-    url: "https://github.com/cloudposse/terraform-example-module/releases/latest"
-  - name: "Slack Community"
-    image: "https://slack.cloudposse.com/badge.svg"
-    url: "https://slack.cloudposse.com"
-  - name: "Discourse Forum"
-    image: "https://img.shields.io/discourse/https/ask.sweetops.com/posts.svg"
-    url: "https://ask.sweetops.com/"
+  - name: Latest Release
+    image: https://img.shields.io/github/release/None.svg?style=for-the-badge
+    url: https://github.com/None/releases/latest
+  - name: Last Updated
+    image: https://img.shields.io/github/last-commit/None.svg?style=for-the-badge
+    url: https://github.com/None/commits
+  - name: Slack Community
+    image: https://slack.cloudposse.com/for-the-badge.svg
+    url: https://slack.cloudposse.com
 
 # List any related terraform modules that this module may be used with or that this module depends on.
 related:
@@ -166,6 +179,4 @@ include:
   - "docs/terraform.md"
 
 # Contributors to this project
-contributors:
-  - name: "Erik Osterman"
-    github: "osterman"
+contributors: []
