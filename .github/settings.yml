@@ -5,3 +5,13 @@ repository:
   description: Example Terraform Module Scaffolding
   homepage: https://cloudposse.com/accelerate
   topics: ""
+
+environments:
+  - name: release
+    deployment_branch_policy:
+      custom_branches:
+        - main
+        - release/**
+      custom_tags:
+        - *.*.*
+        - v*
