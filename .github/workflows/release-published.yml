@@ -9,5 +9,5 @@ permissions: {}
 
 jobs:
   terraform-module:
-    uses: cloudposse/github-actions-workflows-terraform-module/.github/workflows/release.yml@release-workflows
+    uses: cloudposse/github-actions-workflows-terraform-module/.github/workflows/release-published.yml@release-workflows
     secrets: inherit
