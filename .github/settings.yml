@@ -7,7 +7,7 @@ repository:
   topics: ""
 
 environments:
-  - name: release
+  - name: release2
     deployment_branch_policy:
       custom_branches:
         - name: main
