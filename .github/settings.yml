@@ -10,11 +10,7 @@ environments:
   - name: release2
     deployment_branch_policy:
       custom_branches:
-        - name: main
-          type: branch
-        - name: release/**
-          type: branch
-        - name: *.*.*
-          type: tag
-        - name: v*
-          type: tag
+        - main
+        - release/**
+        - *.*.*
+        - v*
