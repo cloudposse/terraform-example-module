@@ -1,5 +1,5 @@
 # Upstream changes from _extends are only recognized when modifications are made to this file in the default branch.
-_extends: .github
+# _extends: .github
 repository:
   name: terraform-example-module
   description: Example Terraform Module Scaffolding
@@ -12,5 +12,5 @@ environments:
       custom_branches:
         - main
         - release/**
-        - *.*.*
+        - "*.*.*"
         - v*
