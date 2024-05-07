@@ -13,7 +13,7 @@
 #
 
 # Name of this project
-name:
+name: terraform-example-module
 
 # Logo for this project
 #logo: docs/logo.png
@@ -28,7 +28,7 @@ copyrights:
     year: "2021"
 
 # Canonical GitHub repo
-github_repo:
+github_repo: cloudposse/terraform-example-module
 
 # Badges to display
 badges:
@@ -53,6 +53,18 @@ related:
 
 # List any resources helpful for someone to get started. For example, link to the hashicorp documentation or AWS documentation.
 references:
+  - name: "Cloud Posse Documentation"
+    url: "https://docs.cloudposse.com"
+    description: "The Cloud Posse Developer Hub (documentation)"
+  - name: "Terraform Standard Module Structure"
+    description: "HashiCorp's standard module structure is a file and directory layout we recommend for reusable modules distributed in separate repositories."
+    url: "https://www.terraform.io/docs/language/modules/develop/structure.html"
+  - name: "Terraform Module Requirements"
+    description: "HashiCorp's guidance on all the requirements for publishing a module. Meeting the requirements for publishing a module is extremely easy."
+    url: "https://www.terraform.io/docs/registry/modules/publish.html#requirements"
+  - name: "Terraform Version Pinning"
+    description: "The required_version setting can be used to constrain which versions of the Terraform CLI can be used with your configuration"
+    url: "https://www.terraform.io/docs/language/settings/index.html#specifying-a-required-terraform-version"
 
 # Short description of this project
 description: |-
