@@ -4,13 +4,14 @@ on:
   pull_request:
     branches:
       - main
-      - release/v*
-    types: [opened, synchronize, reopened]
+      - release/**
+    types: [opened, synchronize, reopened, labeled, unlabeled]
 
 permissions:
   pull-requests: write
   id-token: write
   contents: write
+  issues: write
 
 jobs:
   terraform-module:
