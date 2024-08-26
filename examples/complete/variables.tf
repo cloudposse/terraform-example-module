@@ -1,5 +1,6 @@
 variable "region" {
-  type = string
+  type        = string
+  description = "The AWS region in which the resources will be created"
 }
 
 variable "example_input" {
