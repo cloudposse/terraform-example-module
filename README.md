@@ -304,7 +304,7 @@ All other trademarks referenced herein are the property of their respective owne
 
 ## Copyrights
 
-Copyright © 2021-2024 [Cloud Posse, LLC](https://cloudposse.com)
+Copyright © 2021-2025 [Cloud Posse, LLC](https://cloudposse.com)
 
 
 
